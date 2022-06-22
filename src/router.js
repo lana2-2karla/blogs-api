@@ -1,5 +1,9 @@
 const express = require('express');
+const { addUsersController } = require('./controllers/users.controller');
+const usersValidateMiddleware = require('./middlewares/users');
 
-const routers = express.Router();
+const router = express.Router();
 
-module.exports = routers;
+router.use('/user', usersValidateMiddleware, addUsersController);
+
+module.exports = router;
