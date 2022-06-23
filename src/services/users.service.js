@@ -1,4 +1,9 @@
-const { getUserEmailModel, addUserModel } = require('../models/users.models');
+const { getUsersAllModel, getUserEmailModel, addUserModel } = require('../models/users.models');
+
+const getUsersAllService = async () => {
+    const users = await getUsersAllModel();
+    return users;
+};
 
 const addUserService = async (userData) => {
     const { email } = userData;
@@ -16,5 +21,6 @@ const addUserService = async (userData) => {
 };
 
 module.exports = {
+    getUsersAllService,
     addUserService,
 };
