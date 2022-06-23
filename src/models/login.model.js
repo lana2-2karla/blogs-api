@@ -4,6 +4,7 @@ const { generateJWTToken } = require('../utils/jwtToken');
 
 const getUserLoginEmailModel = async (userData) => {
     const user = await User.findOne({
+        attributes: {exclude: ['password']},
         where: {
             email: userData.email,
         }

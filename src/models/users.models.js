@@ -9,12 +9,16 @@ const getUsersAllModel = async () => {
 }
 
 const getUserByIdModel = async (id) => {
-    const user = await User.findByPk(id);
+    const user = await User.findByPk({
+        attributes: {exclude: ['password']},
+        id,
+    });
     return user;
 };
 
 const getUserEmailModel = async (userEmail) => {
     const user = await User.findOne({
+        attributes: {exclude: ['password']},
         where: {
             email: userEmail,
         }
