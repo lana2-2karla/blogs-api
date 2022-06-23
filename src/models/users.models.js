@@ -9,9 +9,8 @@ const getUsersAllModel = async () => {
 }
 
 const getUserByIdModel = async (id) => {
-    const user = await User.findByPk({
+    const user = await User.findByPk(id, {
         attributes: {exclude: ['password']},
-        id,
     });
     return user;
 };
