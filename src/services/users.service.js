@@ -1,8 +1,25 @@
-const { getUsersAllModel, getUserEmailModel, addUserModel } = require('../models/users.models');
+const { getUsersAllModel, 
+    getUserEmailModel, 
+    addUserModel, 
+    getUserByIdModel,
+} = require('../models/users.models');
 
 const getUsersAllService = async () => {
     const users = await getUsersAllModel();
     return users;
+};
+
+const getUserByIdService = async (id) => {
+    const user = await getUserByIdModel(id);
+    console.log(user);
+
+    const status = {
+        status: 404,
+        message: 'User does not exist',
+    };
+
+    if (!user) throw status;
+    return user;
 };
 
 const addUserService = async (userData) => {
@@ -22,5 +39,6 @@ const addUserService = async (userData) => {
 
 module.exports = {
     getUsersAllService,
+    getUserByIdService,
     addUserService,
 };
