@@ -1,6 +1,13 @@
 const { User } = require('../database/models');
 const { generateJWTToken } = require('../utils/jwtToken');
 
+const getUsersAllModel = async () => {
+    const users = await User.findAll({
+        attributes: {exclude: ['password']},
+    });
+    return users;
+}
+
 const getUserByIdModel = async (id) => {
     const user = await User.findByPk(id);
     return user;
@@ -22,6 +29,7 @@ const addUserModel = async (userData) => {
 };
 
 module.exports = { 
+    getUsersAllModel,
     getUserByIdModel,
     getUserEmailModel,
     addUserModel,
