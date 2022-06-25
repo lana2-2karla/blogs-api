@@ -6,9 +6,10 @@ const addUserLoginService = async (userData) => {
         message: 'Invalid fields',
     };
     const userLogin = await getUserLoginEmailModel(userData);
+    
     if (!userLogin) throw status;
 
-    const token = addUserLoginModel(userData);
+    const token = addUserLoginModel(userLogin.dataValues);
     return token;
 };
 
