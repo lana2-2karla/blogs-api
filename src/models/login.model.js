@@ -12,9 +12,9 @@ const getUserLoginEmailModel = async (userData) => {
     return user;
 };
 
-const addUserLoginModel = async ({email}) => {
+const addUserLoginModel = async ({id}) => {
     
-    const generateToken = generateJWTToken(email);
+    const generateToken = generateJWTToken(id);
     return generateToken;
 };
 
