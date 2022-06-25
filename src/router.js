@@ -16,7 +16,10 @@ const {
 const { 
     addCategoryController, 
     getCategoryAllController } = require('./controllers/categories.controller');
-const { addBlogPostsWithCategoriesController } = require('./controllers/blogPosts.controller');
+const { 
+    addBlogPostsWithCategoriesController, 
+    getPostCategoryWithUserController,
+} = require('./controllers/posts.controller');
 
 const router = express.Router();
 
@@ -36,5 +39,7 @@ router.post('/post',
 authenticationToken, 
 blogPostsValidateMiddleware, 
 addBlogPostsWithCategoriesController);
+
+router.get('/post', authenticationToken, getPostCategoryWithUserController);
 
 module.exports = router;
