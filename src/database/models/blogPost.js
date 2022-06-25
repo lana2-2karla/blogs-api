@@ -11,7 +11,7 @@ const blogPostSchema = (sequelize, DataTypes) => {
         published: DataTypes.DATE,
         updated: DataTypes.DATE
     },
-    { tableName: 'BlogPosts'}, { timestamps: false });
+    { tableName: 'BlogPosts', timestamps: false });
     
     blogPostTable.associate = (models) => {
         blogPostTable.belongsTo(models.User, 
