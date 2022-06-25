@@ -3,6 +3,7 @@ const usersValidateMiddleware = require('./middlewares/users');
 const usersLoginMiddleware = require('./middlewares/login');
 const authenticationToken = require('./middlewares/authToken');
 const categoriesValidation = require('./middlewares/categories');
+const blogPostsValidateMiddleware = require('./middlewares/blogPosts');
 
 const { addUserLoginController } = require('./controllers/login.controller');
 
@@ -15,6 +16,7 @@ const {
 const { 
     addCategoryController, 
     getCategoryAllController } = require('./controllers/categories.controller');
+const { addBlogPostsWithCategoriesController } = require('./controllers/blogPosts.controller');
 
 const router = express.Router();
 
@@ -29,5 +31,10 @@ router.get('/user/:id', authenticationToken, getUserByIdController);
 router.post('/categories', authenticationToken, categoriesValidation, addCategoryController);
 
 router.get('/categories', authenticationToken, getCategoryAllController);
+
+router.post('/post', 
+authenticationToken, 
+blogPostsValidateMiddleware, 
+addBlogPostsWithCategoriesController);
 
 module.exports = router;
