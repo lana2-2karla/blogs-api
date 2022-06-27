@@ -11,7 +11,6 @@ const getUsersAllService = async () => {
 
 const getUserByIdService = async (id) => {
     const user = await getUserByIdModel(id);
-    console.log(user);
 
     const status = {
         status: 404,
