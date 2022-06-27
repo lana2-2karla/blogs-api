@@ -1,6 +1,8 @@
 const { 
     addBlogPostsWithCategoriesModel, 
     getPostCategoryWithUserModel,
+    getPostUserCategoryByIdModel,
+    getBlogPostById,
     } = require('../models/post.model');
 
 const getPostCategoryWithUserService = async () => {
@@ -13,7 +15,19 @@ const addblogPostsWithcategoriesService = async (postData, userId) => {
     return blogPost;
 };
 
+const getPostUserCategoryByIdService = async (id) => {
+    const status = {
+        status: 404,
+        message: 'Post does not exist',
+    };
+    const blogPost = await getBlogPostById(id);
+    if (!blogPost) throw status;
+    const postComplete = await getPostUserCategoryByIdModel(id);
+    return postComplete;
+};
+
 module.exports = {
     getPostCategoryWithUserService,
     addblogPostsWithcategoriesService,
+    getPostUserCategoryByIdService,
 };
