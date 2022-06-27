@@ -42,10 +42,26 @@ const addBlogPostsWithCategoriesModel = async (postData, userId) => {
       return blogPost;
 };
 
+
+const getPostUserCategoryByIdModel = async (id) => {
+  const postComplete = BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: {exclude: ['password']} },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+    where: { id },
+  });
+  
+  return postComplete;
+}
+
+
+
 // bulkCreat reference: https://sebhastian.com/sequelize-bulk-create/#:~:text=When%20you%20need%20to%20insert,with%20a%20single%20function%20call
 // transactions reference: https://sequelize.org/docs/v6/other-topics/transactions/
 
 module.exports = {
   getPostCategoryWithUserModel,
   addBlogPostsWithCategoriesModel,
+  getPostUserCategoryByIdModel,
 }
