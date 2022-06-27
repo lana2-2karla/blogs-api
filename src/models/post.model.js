@@ -53,9 +53,12 @@ const getPostUserCategoryByIdModel = async (id) => {
   });
   
   return postComplete;
-}
+};
 
-
+const getBlogPostById = (id) => {
+  const blogPost = BlogPost.findByPk(id)
+  return blogPost;
+ };
 
 // bulkCreat reference: https://sebhastian.com/sequelize-bulk-create/#:~:text=When%20you%20need%20to%20insert,with%20a%20single%20function%20call
 // transactions reference: https://sequelize.org/docs/v6/other-topics/transactions/
@@ -64,4 +67,5 @@ module.exports = {
   getPostCategoryWithUserModel,
   addBlogPostsWithCategoriesModel,
   getPostUserCategoryByIdModel,
+  getBlogPostById,
 }
