@@ -22,4 +22,28 @@ const blogPostsValidateMiddleware = async (req, _res, next) => {
     next();
 };
 
-module.exports = blogPostsValidateMiddleware;
+const blogPostsUpdateValidation = Joi.object({
+    title: Joi.string().required(),
+    content: Joi.string().required(),
+}).messages({
+    'any.required': 'Some required fields are missing',
+    'string.empty': 'Some required fields are missing',
+});
+
+const blogPostsUpdateValidateMiddleware = async (req, _res, next) => {
+    const { error } = blogPostsUpdateValidation.validate(req.body);
+    if (error) {
+        const { message } = error.details[0];
+        const status = {
+            status: 400, 
+            message,
+        };
+        throw status;
+    }
+    next();
+};
+
+module.exports = {
+    blogPostsValidateMiddleware,
+    blogPostsUpdateValidateMiddleware,
+};
