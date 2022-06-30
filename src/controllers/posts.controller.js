@@ -2,6 +2,7 @@ const {
     addblogPostsWithcategoriesService, 
     getPostCategoryWithUserService,
     getPostUserCategoryByIdService,
+    updatePostUserCategoryByIdService,
 } = require('../services/post.service');
 
 const getPostCategoryWithUserController = async (_req, res) => {
@@ -19,8 +20,15 @@ const getPostUserCategoryByIdController = async (req, res) => {
     res.status(200).json(postComplete);
 };
 
+const updatePostUserCategoryByIdController = async (req, res) => {
+    const { id } = req.params;
+    const [postComplete] = await updatePostUserCategoryByIdService(id, req.body, req.user.id);
+    res.status(200).json(postComplete);
+};
+
 module.exports = {
     getPostCategoryWithUserController,
     addBlogPostsWithCategoriesController,
     getPostUserCategoryByIdController,
+    updatePostUserCategoryByIdController,
 };
