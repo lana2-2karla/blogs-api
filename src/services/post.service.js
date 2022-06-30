@@ -3,6 +3,7 @@ const {
     getPostCategoryWithUserModel,
     getPostUserCategoryByIdModel,
     getBlogPostById,
+    updatePostUserCategoryByIdModel,
     } = require('../models/post.model');
 
 const getPostCategoryWithUserService = async () => {
@@ -26,8 +27,21 @@ const getPostUserCategoryByIdService = async (id) => {
     return postComplete;
 };
 
+const updatePostUserCategoryByIdService = async (id, postData, userId) => {
+    const status = {
+        status: 401,
+        message: 'Unauthorized user',
+    };
+    const blogPost = await getBlogPostById(id);
+    if (blogPost.id !== userId) throw status;
+    const isUpdated = await updatePostUserCategoryByIdModel(id, postData);
+    const postComplete = await getPostUserCategoryByIdModel(id);
+    if (isUpdated) return postComplete;
+};
+
 module.exports = {
     getPostCategoryWithUserService,
     addblogPostsWithcategoriesService,
     getPostUserCategoryByIdService,
+    updatePostUserCategoryByIdService,
 };
