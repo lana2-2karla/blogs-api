@@ -63,6 +63,12 @@ const updatePostUserCategoryByIdModel = async (id, postData) => {
   return postComplete > 0;
  };
 
+ const deletePostUserCategoryByIdModel = async (id) => {
+  const postComplete = await BlogPost.destroy({ where: { id } });
+  console.log(postComplete);
+  return postComplete > 0;
+};
+
 // bulkCreat reference: https://sebhastian.com/sequelize-bulk-create/#:~:text=When%20you%20need%20to%20insert,with%20a%20single%20function%20call
 // transactions reference: https://sequelize.org/docs/v6/other-topics/transactions/
 
@@ -72,4 +78,5 @@ module.exports = {
   getPostUserCategoryByIdModel,
   getBlogPostById,
   updatePostUserCategoryByIdModel,
+  deletePostUserCategoryByIdModel,
 };
