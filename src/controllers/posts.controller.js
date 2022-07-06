@@ -3,6 +3,7 @@ const {
     getPostCategoryWithUserService,
     getPostUserCategoryByIdService,
     updatePostUserCategoryByIdService,
+    deletePostUserCategoryByIdService,
 } = require('../services/post.service');
 
 const getPostCategoryWithUserController = async (_req, res) => {
@@ -26,9 +27,16 @@ const updatePostUserCategoryByIdController = async (req, res) => {
     res.status(200).json(postComplete);
 };
 
+const deletePostUserCategoryByIdController = async (req, res) => {
+    const { id } = req.params;
+    await deletePostUserCategoryByIdService(id, req.user.id);
+    res.status(204).json();
+};
+
 module.exports = {
     getPostCategoryWithUserController,
     addBlogPostsWithCategoriesController,
     getPostUserCategoryByIdController,
     updatePostUserCategoryByIdController,
+    deletePostUserCategoryByIdController,
 };
