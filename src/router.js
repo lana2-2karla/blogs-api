@@ -24,6 +24,7 @@ const {
     getPostCategoryWithUserController,
     getPostUserCategoryByIdController,
     updatePostUserCategoryByIdController,
+    deletePostUserCategoryByIdController,
 } = require('./controllers/posts.controller');
 
 const router = express.Router();
@@ -53,5 +54,7 @@ router.put('/post/:id',
 authenticationToken, 
 blogPostsUpdateValidateMiddleware, 
 updatePostUserCategoryByIdController);
+
+router.delete('/post/:id', authenticationToken, deletePostUserCategoryByIdController);
 
 module.exports = router;
