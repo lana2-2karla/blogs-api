@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Blogs-Api",
+        "description": "Blogs API Documentation - Blogs-Api",
+        "contact": {
+            "email": "allanakarla1702@gmail.com"
+        },
+        "version": "1.0.0"
+    }
+}
