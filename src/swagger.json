@@ -7,5 +7,65 @@
             "email": "allanakarla1702@gmail.com"
         },
         "version": "1.0.0"
+    },
+    "paths": {
+        "/user": {
+            "post": {
+                "summary": "Cadastro de usuários",
+                "description": "Rota responsável pelo cadastro de um novo usuário",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/user"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "displayName": "Brett Wiltshire",
+                                        "email": "brett@email.com",
+                                        "password": "123456",
+                                        "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "\"email\" must be a valid email"
+                    },
+                    "409": {
+                        "description": "User already registered"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "user": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
     }
 }
